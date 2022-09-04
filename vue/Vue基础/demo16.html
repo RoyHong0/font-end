@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                show: false
+            }
+        },
+        methods: {
+
+        },
+        // v-show 和 v-if 区别
+        // v-if  会取消掉整个DOM元素,  更加灵活  
+        // v-show 控制css 样式来控制显示隐藏  只能进行真假的逻辑业务
+        
+        template: `
+            <h2 v-show="show">jspang.com</h2>
+            <h2 v-if="show">技术胖</h2>
+        `,
+    })
+    const vm = app.mount("#app")
+</script>
+</html>

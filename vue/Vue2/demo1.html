@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识Vue</title>
+    <script src="./vue/vue.js"></script>
+</head>
+<body>
+    <!-- 准备好一个工具 -->
+    <div id="root">
+        <div @click="handleClick">{{count}}</div>
+    </div>
+</body>
+<script>
+    Vue.config.productionTip = false;  // 阻止 vue 在启动生成时产生的提示
+    const vm = new Vue({
+        el: '#root', // 用于指定当前Vue实例为哪个容器服务， 值通常为css选择器字符串
+        data: { // data中用于存储数据， 数据提供el所指定的容器去使用， 值我们展示先写成一个对象
+            count: 0
+        },
+        methods: {
+            handleClick() {
+                this.count++
+            },
+        },
+    })
+</script>
+</html>

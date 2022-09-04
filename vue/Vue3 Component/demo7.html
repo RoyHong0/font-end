@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo05</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.37/vue.global.js"></script>
+    <!-- 需要复制global 源 -->
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                counter: 0,
+            }
+        },
+        methods: {
+            handleAddCounter(param) {
+                console.log(param);
+                this.counter += param
+            }
+        },
+        template:`
+            <h2>JSPang.com</h2>
+            <Counter :counter='counter' @add="handleAddCounter"/>
+         `
+    })
+
+    app.component('Counter', {
+        props: ['counter'],
+        emits: {
+            add: (value) => {
+                return value < 20 ? true : false;
+            }
+        },
+        data() {
+            return {
+                newCounter: this.counter
+            }
+        },
+        methods: {
+            handleClick() {
+                this.$emit('add',this.counter+3)
+                // 调用的是父组件传过来的方法名
+                // 子组件像父组件传值
+                // meit需要声明再用, 不然会警报
+            }
+        },
+        // non-props 是子组件不接受值 父组件方法和参数会全部复制到子组件中  使用$attr   $attr包含了全部的参数和方法
+        // 要调通父组件方法 要声明
+        // $emit 接受的是父祖家传过来的方法 括号内部写方法名
+        template:`
+            {{counter}}<button @click="handleClick">增加数量</button>
+        `
+    })
+
+    // 1. 子组件调用父组件方法的编写
+    // 2. 或者子组件接受父组件的数据在保存到子组件件内
+    // 3. 传递参数时, 如何进行校验
+
+    const vm = app.mount("#app")
+</script>
+</html>

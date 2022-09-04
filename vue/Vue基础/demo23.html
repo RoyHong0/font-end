@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo23</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                checked: true,
+                name: '未选中任何内容',
+                message: '',
+                message1: ''
+            }
+        },
+        // lazy 修饰符
+        // 有点像防抖
+        // number 修饰符
+        // 输入的内容无论是数字还是字母，最终都会变为字符串。如果想最终输入的变成数字，你就可以使用number修饰符了。
+        // trim 修饰符 
+        // 取消前后端空格
+        template: `
+        <div>{{checked}}<input type="checkbox" v-model="checked" /></div>
+        <div>
+            {{name}}
+            <input 
+                type="checkbox" 
+                v-model="name" 
+                true-value="JSPang.com"
+                false-value="技术胖"
+            />
+        </div>
+        <div>
+            {{message}}
+            <input v-model.lazy="message" />    
+        </div>
+        <div>
+            {{typeof message1}}
+            <input v-model.number"message1" />    
+        </div>
+        <div>
+            {{message1}}
+            <input v-model.trim="message1" />    
+        </div>
+        `
+
+    })
+    const vm = app.mount("#app")
+
+</script>
+
+</html>

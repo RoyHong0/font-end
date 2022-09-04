@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                classString: 'red',
+                // 字符串形式
+                classObject: {red:false, background:true},
+                // 类 对象
+                classArray: ['green', 'background',{red: true}],
+                // 类 数组
+                styleString: 'color:orange;',
+                // 变量
+                styleObject: {
+                    color: 'red',
+                    background: 'yellow'
+                }
+            }
+        },
+        watch() {
+
+        },
+        computed() {
+
+        },
+        methods: {
+
+        },
+        template: `
+            <h2 :style='styleObject'>jspang.com</h2>
+            <sonCom class='green'/>
+        `,
+    })
+    app.component('sonCom', {
+        template: `
+            <div>
+                <div >sonCom</div>
+                <div >技术胖</div>    
+            </div>
+        `
+    })
+    const vm = app.mount("#app")
+</script>
+<style>
+    .red{
+        color:red !important;
+    }
+    .green {
+        color: green;
+    }
+    .background {
+        background-color: orange;
+    }
+</style>
+</html>

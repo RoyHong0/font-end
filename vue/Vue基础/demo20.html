@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                count: 0,
+            }
+        },
+        methods: {
+            addCountClick() {
+                // this.count++
+                alert(0)
+            },
+            handleBtnClick1(){
+                alert(1)
+            },
+        },
+        // <button @click="addCountClick(2, $event)">增加以为佳丽</button>
+        // @click 要绑定多个方法的话,方法用逗号隔开,  方法名需要加括号
+        // 事件向上冒泡
+        // .stop 停止冒泡
+        // .self 只有自身的DOM元素才能触发 事件绑定
+        // prevent  
+        // capture   捕获模式  重外面开始   默认是冒泡  
+        // once  只做一次
+        // passive  解决滚动性能报错
+        template:`
+            <div @click.capture="handleBtnClick1">
+                我是最外层的DiV的文字
+                <div>目前已点佳丽数量{{count}}.</div>
+                <button @click.once="addCountClick()">增加一位佳丽</button>
+            </div>
+        `
+    })
+    const vm = app.mount("#app")
+</script>
+</html>

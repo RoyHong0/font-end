@@ -1,0 +1,52 @@
+<!-- pricode  inject -->
+<!-- 多级组件传值 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo13</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.0.2/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                house: '北京别墅一套',
+            }
+        },
+        provide: {
+            newhouse: '北京200平方房子一套'
+        },
+        template: `
+            <div>我有一套房子，我先传给我的儿子</div>
+            ---------------------
+            <child :house="house"/>
+        `
+    })
+
+    app.component('child', {
+        props: ['house'],
+        template:`
+            <div>我是子组件， 我要把房子传递给我的儿子</div>
+            ---------------------
+            <child-child :house="house" />
+        `
+    })
+
+    app.component('child-child', {
+        props: ['house'],
+        inject: ['newhouse'],
+        template:`
+            <div>我是孙子， 等待接受房子</div>
+            <div>孙子接收：{{house}},{{newhouse}}</div>
+        `
+    })
+
+    const vm = app.mount("#app")
+</script>

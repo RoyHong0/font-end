@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo04</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.37/vue.global.js"></script>
+    <!-- 需要复制global 源 -->
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    // String Boolean Array Object Function Symbol
+    const app = Vue.createApp({
+        data() {
+            return {
+                name: 'JSPang  哈哈哈',
+                pay: () => {
+                    alert('给你500元')
+                }
+            }
+        },
+        template:`
+            <h2>JSPang.com</h2>
+            <Son :name="name" />
+         `
+    })
+    // 参数类型校验
+    // 父组件没传参 但子组件接收参数  可以设置默认值来防止报错
+    // 有些参数是必须要传递的，但有些参数就是可以不传的，当不传时。我们只要给系统一个默认值就可以了。所以有必要对这两个知识学习一下。
+    // required必填项
+    // 如果要求组件使用时，必须传递参数，可以使用required来校验.
+    // 这时候的意思就是在调用组件时，如果不传递参数，则默认值为JSPang.com。
+    // 再来看一下默认值的写法，在原来写required的地方直接写default就可以了。比如写成下面的样子。
+    // 如果上面这些校验都不能满足你的要求，还可以进行精准校验。比如现在要求传递的字符串中必须包括JSPang这几个字符，就可以用validator来进行校验   包含必传的值
+    
+    app.component('Son', {
+        props:{
+            name: {
+                type: String,
+                validator: function(value) {
+                    //  ...............
+                    return value.search("JSPang") != -1
+                },
+                default: 'jspang.com'
+            }
+        },
+        template: `<div>{{name}} div</div>`
+    })
+    const vm = app.mount("#app")
+</script>
+</html>

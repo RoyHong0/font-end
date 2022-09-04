@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.37/vue.global.js"></script>
+    <!-- 需要复制global 源 -->
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                name: 123,
+                pay: () => {
+                    alert('给你500元')
+                }
+            }
+        },
+        // 组件间传值使用属性传值
+        // 静态传值
+        // v-bind 可以传递变量
+        // 绑定之后可以动态传值
+        template:`
+            <h2>JSPang.com</h2>
+            <Son :name="name"/>
+            <Xiao-Jie-Jie :pay="pay"/>
+         `
+    })
+
+    app.component('Son', {
+        props:['name'],
+        template: `<div>{{typeof name}} div</div>`
+    })
+    // 父组件传给子组件的 参数 是函数时
+    // 在父组件调用的时候，pay是一个定义在data中的函数,然后用动态参数的形式进行调用。
+    app.component('XiaoJieJie', {
+        props:['pay'],
+        methods: {
+            handleClick(){
+                alert('请付钱.....')
+                this.pay()
+            },
+
+        },
+        template:`
+            <div @click="this.handleClick">和小姐姐打招呼</div>
+        `
+    })
+    const vm = app.mount("#app")
+</script>
+</html>

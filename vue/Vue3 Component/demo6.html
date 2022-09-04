@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo06</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.37/vue.global.js"></script>
+    <!-- 需要复制global 源 -->
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+
+            }
+        },
+        template: `
+            <h2>JSPang.com</h2>
+            <hello style="color:red;" msg='技术胖'/>
+         `
+    })
+
+
+    app.component("Hello", {
+        // props:['msg'],
+        // inheritAttrs: false,
+        // template:`
+        //     <div>
+        //         <h3>hello world!</h3>
+        //         <h3>hello world!</h3>
+        //         <h3>hello world!</h3>    
+        //     </div>
+        // `
+        mounted() {
+            console.log(this.$attrs.msg);
+        },
+        template: `
+                <h3 v-bind:style="$attrs.style">hello world!</h3>
+                <h3>hello world!</h3>
+                <h3>hello world!</h3>    
+        `
+    })
+    // 有些时候我们就是不想接受参数，也不想让Non-props属性起作用，这时候可以在子组件上使用inheritAttrs属性来解决这个问题。
+    // 没有父元素non-props也不生效
+    // 试的$attrs不是单指某一个属性，而是指全部属性。当然这里只有一个属性，所以只复制了一个，比如你再写一个属性，它也是可以复制过来的。
+     // v-bind="$attrs"的意思是把父组件传递的所以参数属性都复制到子组件当中。
+    // 如果你想只复制一个属性，比如现在我们只复制一个属性style，就这个这么写。  
+    const vm = app.mount("#app")
+   
+    // Non-props
+    // 它就是父组件向子组件传递参数的时候，子组件不写任何的S接受方法。
+    // 这个时候父组件就会直接把属性完全复制给子组件，子组件也是可以得到属性值的。
+</script>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo09</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.0.2/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        template: ` 
+            <h2>欢迎光临红浪漫-请选择您的技师</h2>
+            <jiShi><span style="color:red;font-size:20px;">谢大脚</span></jiShi>
+        `
+    })
+
+    app.component("JiShi", {
+        template:`
+            <div>
+                你选择了<slot><span style="color:green;">晓红</span></slot> 为你服务    
+                <hong-lang-man>
+                    <template v-slot:one><div>1. 男宾一位， 请上二楼</div></template>
+                    <template v-slot:two><div>3. 你点了 198元 泰式按摩</div></template>
+                </hong-lang-man>
+            </div>
+        `
+        // 默认值的写法
+    })
+
+    app.component('HongLangMan', {
+        template:`
+            <div>
+                <slot name="one"></slot>
+                <div>2. 你选择了大脚 为你服务</div> 
+                <slot name="two"></slot>
+            </div>
+        `
+    })
+
+    const vm = app.mount("#app")
+</script>

@@ -1,0 +1,75 @@
+<!-- 生命周期函数  -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    // <!-- 生命周期函数  在 某一时刻 会 自动执行的函数 -->
+    const app = Vue.createApp({
+        data() {
+            return {
+                message: 'jspang.com'
+            }
+        },
+        methods: {
+            handleItemClick() {
+                this.message = this.message == 'jspang.com' ? '技术胖' : 'jspang.com'
+            }
+        },
+        beforeCreate() {  // 在实例生成之前会自动执行的函数
+            console.log('beforeCreate')
+        },
+        created() { // 在实例生成之后会自动执行的函数
+            console.log('created');
+        },
+        beforeMount() {// 在模板生成之前会自动执行的函数
+            console.log('beforeMount');
+        },
+        // beforeCreate1() {  // 在实例生成之前会自动执行的函数
+        //     console.log('beforeCreate')
+        // },
+        mounted() { // 在模板生成之后会自动执行的函数
+            console.log('mounted')
+        },
+        beforeUpdate() { // 当data中数据变化时， 会立自动执行的函数
+            console.log('beforeUpdate')
+            console.log(document.getElementById('app').innerHTML)
+        },
+        updated() { // 当data中数据变化时，页面渲染完成后，会立自动执行的函数
+            console.log('updated')
+            console.log(document.getElementById('app').innerHTML)
+        },
+        // beforeDestroy() {
+        //     console.log('beforeDestroy')
+        // },
+        // destroyed() {
+        //     console.log('destroyed')
+        // },
+        beforeUnmount() { //当Vue应用失效时， 会自动执行的函数
+            console.log('beforeUnmount')
+            console.log(document.getElementById('app').innerHTML)
+        },
+        unmounted() {//当Vue应用失效时，且DOM完全销毁后 会自动执行的函数.
+            console.log('unmounted')
+            console.log(document.getElementById('app').innerHTML)
+        },
+        template: `
+            <h2 v-on:click='handleItemClick'>{{message}}</h2>
+        `
+    })
+    const vm = app.mount("#app")
+    // console.log(vm);
+    
+</script>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo05</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.37/vue.global.js"></script>
+    <!-- 需要复制global 源 -->
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                counter: 0,
+            }
+        },
+        template:`
+            <h2>JSPang.com</h2>
+            <Counter :counter='counter'/>
+            <Counter :counter='counter'/>
+            <Counter :counter='counter'/>
+         `
+    })
+
+    app.component('Counter', {
+        props: ['counter'],
+        data() {
+            return {
+                newCounter: this.counter
+            }
+        },
+        template:`
+            {{counter}}<button @click="counter+=1">增加数量</button>
+        `
+    })
+
+    // 单向数据流
+    // 所有的prop都使得其父子prop之间形成了一个单向下行绑定：父级prop的更新会向下流动到子组件中，但是反过来则不行。
+    // 保证了组件的独立性, 降低耦合度
+    const vm = app.mount("#app")
+</script>
+</html>
