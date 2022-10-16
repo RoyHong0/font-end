@@ -30,7 +30,7 @@
 
 <style lang="less" scoped>
 	.student{
-		background-color: pink;
+		background-color: rgba(44, 240, 23, 0);
 		padding: 5px;
 		margin-top: 30px;
 	}

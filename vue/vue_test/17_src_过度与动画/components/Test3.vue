@@ -29,6 +29,4 @@
 	h1{
 		background-color: orange;
 	}
-	
-
 </style>
