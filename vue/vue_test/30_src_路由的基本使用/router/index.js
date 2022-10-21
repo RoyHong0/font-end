@@ -13,6 +13,9 @@ export default new VueRouter({
 		},
 		{
 			path:'/home',
+
+
+								
 			component:Home
 		}
 	]
