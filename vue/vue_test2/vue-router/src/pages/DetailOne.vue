@@ -1,0 +1,17 @@
+<template>
+    <div>
+        <ul>
+            <li>消息编号:{{ id }}</li>
+            <li>消息标题:{{ title }}</li>
+            <!-- <li>{{a}}</li>
+            <li>{{b}}</li> -->
+        </ul>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'DetailOne',
+    props: ['id', 'title'],
+}
+</script>
